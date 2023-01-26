@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-pi-pico", "id": "pico", "top": 62, "left": -216, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": 155.67, "left": 95.63, "attrs": {} },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": -69.6, "left": -67.35, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 87.37,
+      "left": 61.82,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -1.46,
+      "left": 219.26,
+      "attrs": { "color": "red" }
+    }
+  ],
+  "connections": [
+    [ "pico:GP0", "$serialMonitor:RX", "", [] ],
+    [ "pico:GP1", "$serialMonitor:TX", "", [] ],
+    [ "relay1:IN", "pico:GP17", "green", [ "h0" ] ],
+    [ "relay1:VCC", "pico:3V3", "red", [ "h0" ] ],
+    [ "relay1:GND", "pico:GND.8", "black", [ "h0" ] ],
+    [ "pir1:GND", "pico:GND.8", "black", [ "v0" ] ],
+    [ "pir1:OUT", "pico:GP19", "green", [ "v0" ] ],
+    [ "pir1:VCC", "pico:3V3", "red", [ "v0" ] ],
+    [ "r1:2", "led1:C", "green", [ "v0" ] ],
+    [ "led1:A", "pico:GP17", "green", [ "v0" ] ],
+    [ "r1:1", "pico:GND.8", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
